@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Welcome to FY17 Farewell Party App</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.9.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.9.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="//aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="//jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <!-- <script src="//unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script> -->
+    <!-- <script src="//html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+      .ui {
+          position: absolute;
+          z-index: 100;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: auto;
+          margin: 0;
+          padding: 10px 15px 30px;
+          text-align: center;
+          box-sizing: border-box;
+      }
+      .ui a {
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+          background-color: #ffffff;
+          line-height: 100%;
+          color: #303030;
+          margin: 10px 3px;
+          border-radius: 50%;
+          position: relative;
+
+      }
+      .ui a i {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+      }
+      .ui a:active {
+          color: #ff0000;
+      }
+      #snap {
+          max-width: 100%;
+          height: auto;
+          display: block;;
+          visibility: hidden;
+      }
+      .ui a.disabled {
+          pointer-events: none;
+          color: #cccccc;
+      }
+      #snap.visible {
+          visibility: visible;
+      }
+      /* .target {
+        position: absolute;
+        width: 320px;
+        height: 200px;
+        font-size: 100%;
+        background-color: #FFF;
+        display: none;
+      }
+      #target1 {
+        width: 1600px;
+        height: 1000px;
+        font-size: 500%;
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- <div id="target1" style="width: 1000px; height: 1000px; z-index: -50; font-size: 500%; background-color: #FFF">
+      <p>A-Frameは簡単にWeb VRが実現できるフレームワークです。</p>
+    </div> -->
+  
+    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; trackingMethod: best; matrixCodeType: 3x3;' vr-mode-ui="enabled: false">
+      <a-assets>
+        <a-asset-item id="font" src="font/mp.json">
+      </a-assets>
+
+      <!-- <a-marker-camera preset='hiro'></a-marker-camera> -->
+      <a-marker type="pattern" url="marker/farewell.patt">
+        <!-- <a-text value="Congratulations!" position=" 0 0 -1" align="center" rotation="-90 0 0" color="#DD4827"></a-text> -->
+        <!-- <a-plane position=" 0 0 -1" rotation="-90 0 0" width="1" height="1" material="shader:html; target:#target1;"></a-plane> -->
+        <a-entity text-geometry="value: FY17のみんな、卒業おめでとう！; font: #font; size: 0.1;" position=" -1 0 0" rotation="-90 0 0" width="5" height="3" material="color: red;"></a-entity>
+      </a-marker>
+
+      <a-marker type="pattern" url="marker/farewell-kanji.patt">
+        <a-plane position="0 0 0" rotation="-90 0 0" width="1" height="1" color="#7BC8A4"></a-plane>
+        <a-text value="Happy New Year!" position=" 0 0 1" align="center" rotation="-90 0 0" color="#DD4827"></a-text>
+      </a-marker>
+
+      <!-- <a-camera-static/> -->
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <!-- A-Frame終了 -->
+    <!--新規追加 ここまで-->
+    <div class="ui">
+      <img id="snap">
+      <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
+      <a href="" id="take-photo" title="Take Photo"><i class="material-icons">photo_camera</i></a>
+      <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled" target="_blank"><i class="material-icons">file_download</i></a>
+    </div>
+  </body>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          // document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          // document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+
+    var image = document.querySelector('#snap');
+    var take_photo_btn = document.querySelector('#take-photo');
+    var delete_photo_btn = document.querySelector('#delete-photo');
+    var download_photo_btn = document.querySelector('#download-photo');
+
+    //スナップショットボタン
+    take_photo_btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var video = document.querySelector('video');
+      var snap = takeSnapshot(video);
+
+      //スナップショット表示.
+      image.setAttribute('src', snap);
+      image.classList.add('visible');
+
+      // 削除ボタンと保存ボタン有効
+      delete_photo_btn.classList.remove("disabled");
+      download_photo_btn.classList.remove("disabled");
+
+      // 保存ボタンにスナップショットを渡す
+      download_photo_btn.href = snap;
+    });
+
+    //削除ボタン
+    delete_photo_btn.addEventListener("click", function(e){
+      e.preventDefault();
+
+      // スナップショットを隠す
+      image.setAttribute('src', "");
+      image.classList.remove("visible");
+
+      // 削除ボタンと保存ボタン無効
+      delete_photo_btn.classList.add("disabled");
+      download_photo_btn.classList.add("disabled");
+    });
+
+    //スナップショットを撮る
+    function takeSnapshot(video) {
+      var resizedCanvas = document.createElement("canvas");
+      var resizedContext = resizedCanvas.getContext("2d");
+      var width = video.videoWidth;
+      var height = video.videoHeight;
+      var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+
+      if (width && height) {
+        //videoのサイズをキャンバスにセット
+        resizedCanvas.width = width;
+        resizedCanvas.height = height;
+        //キャンバスにvideoをコピー
+        resizedContext.drawImage(video, 0, 0, width, height);
+
+        //カメラの画角でar側の縮小処理を変える
+        if (width > height) {
+          // 横長（PC)
+          resizedContext.drawImage(aScene, 0, 0, width, height);
+        } else {
+          // 縦長（スマホ）
+          var scale = height / width;
+          var scaledWidth = height * scale;
+          var marginLeft = (width - scaledWidth) / 2;
+          resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
+        }
+        return resizedCanvas.toDataURL('image/png');
+      }
+    }
+  </script>
+</html>
